@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+ tools {
+        maven 'maven'
+    }
     stages {
 
        /* stage('Deploy to Staging Environment') {
