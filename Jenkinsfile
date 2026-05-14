@@ -3,7 +3,7 @@ pipeline {
 
     stages {
 
-        stage('Deploy to Staging Environment') {
+       /* stage('Deploy to Staging Environment') {
             steps {
                 build job: 'deploy-application-staging-environment-pipeline'
             }
@@ -18,7 +18,7 @@ pipeline {
                 build job: 'deploy-application-production-environment-pipeline'
             }
         }
-
+*/
         stage('Build') {
             steps {
                 sh 'mvn clean package'
