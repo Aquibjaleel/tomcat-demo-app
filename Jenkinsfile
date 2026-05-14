@@ -1,23 +1,7 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'maven'
-    }
-
     stages {
-
-        stage('Build') {
-            steps {
-                sh 'mvn clean package'
-            }
-
-            post {
-                success {
-                    archiveArtifacts artifacts: '**/*.war', fingerprint: true
-                }
-            }
-        }
 
         stage('Deploy to Staging Environment') {
             steps {
@@ -32,6 +16,18 @@ pipeline {
                 }
 
                 build job: 'deploy-application-production-environment-pipeline'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+
+            post {
+                success {
+                    archiveArtifacts artifacts: '**/*.war', fingerprint: true
+                }
             }
         }
     }
